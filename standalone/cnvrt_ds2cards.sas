@@ -1,22 +1,21 @@
-/*!
-Generic macro to create a cards file from a SAS dataset.  
-<p>stuff to add
-<p> - labelling the dataset
-<p> 
-<p>USAGE:
-<p> %cnvrt_ds2cards(base_ds=line_of_business
-<p>    , cards_file= "C:\temp\line_of_business.sas")
+/***
 
-*   @author  Allan Bowe
-*   @version  9.2
+Generic macro to create a cards file from a SAS dataset. 
 
-*/
-/**
- * 
- *  @param base_ds Should be two level - eg work.blah 
- *  @param tgt_ds  Table to be created by the cards file. Optional - if omitted, will be same as BASE_DS.
- *  @param cards_file Location to write the cards file (.sas) 
- */
+ #SASPGM
+ 
+  @author  Allan Bowe @@
+  @version  9.2 @@
+  @Todo labelling the dataset@@
+
+  @param base_ds Should be two level - eg work.blah @@
+  @param tgt_ds  Table to be created by the cards file. Optional - if omitted, will be same as BASE_DS.@@
+  @param cards_file Location to write the cards file (.sas) @@
+  
+   %cnvrt_ds2cards(base_ds=line_of_business
+    , cards_file= "C:\temp\line_of_business.sas")
+    
+***/
 
 %macro cnvrt_ds2cards(base_ds=, tgt_ds= , cards_file= );
 %if not %sysfunc(exist(&base_ds)) %then %do;
