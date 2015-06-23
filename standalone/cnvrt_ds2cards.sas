@@ -2,20 +2,19 @@
 
 Generic macro to create a cards file from a SAS dataset.  
 
-@ToDo - labelling the dataset @@
+  @author  Allan Bowe @@
+  @version  9.2 @@
+  @Todo labelling the dataset@@
 
-@Usage
-   %cnvrt_ds2cards(base_ds=line_of_business
-     , cards_file= "C:\temp\line_of_business.sas")
-@@
+  @Usage
+     %cnvrt_ds2cards(base_ds=line_of_business
+       , cards_file= "C:\temp\line_of_business.sas")
+  @@
 
-@author  Allan Bowe
-@version  9.2
 
-#datalines
+  #datalines
 
 ***/
-
 
 %macro cnvrt_ds2cards(base_ds= Should be two level - eg work.blah 
     , tgt_ds= /*Table to be created by the cards file. 
