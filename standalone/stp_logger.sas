@@ -7,7 +7,7 @@
   @version 9.2@@
   
   @USAGE
-    %stp_logger(SrvExit);
+    %stp_logger(status_cd=SrvExit);
     @@
     
   @dependencies
@@ -19,8 +19,8 @@
         
      CREATE TABLE [dbo].[STP_LOGGER](
           [PROCESSED_DTTM] [datetime2](3) NOT NULL,
-	        [STATUS_CD] [char](8) NOT NULL,
-	        [_PROGRAM] [char] (500) NOT NULL,
+	  [STATUS_CD] [char](8) NOT NULL,
+	  [_PROGRAM] [char] (500) NOT NULL,
           [_METAPERSON] [char] (100) NOT NULL,
           [SYSJOBID] [char] (12) NOT NULL,
           [_SESSIONID] [char] (50) NULL,
@@ -32,7 +32,7 @@
 
 
 
-%macro stp_logger(status_cd /* $8. values such as SrvEnter or PgmEnter */
+%macro stp_logger(status_cd= /* $8. values such as SrvEnter or PgmEnter */
       );
   %local global_vars;
   proc sql noprint;
