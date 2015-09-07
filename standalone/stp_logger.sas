@@ -45,6 +45,7 @@
       and substr(name,1,1) ne '_';
 
   %assign_lib(libref=web);
+  proc datasets library=work; delete append; run;
   data append /view=append;
     if 0 then set web.stp_logger;
     PROCESSED_DTTM=%sysfunc(datetime());
@@ -67,6 +68,8 @@
     _SESSIONID=symget('_SESSIONID');
   %end;
     GLOB_VARS=symget('global_vars');
+    output;
+    stop;
   run;
 
   proc append base=web.stp_logger data=append;run;
