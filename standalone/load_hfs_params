@@ -1,0 +1,34 @@
+/***
+  Macro for loading HFS params into SAS Macro variables
+  
+  @author Allan Bowe @@
+  @version 9.2 @@
+  
+  #h54s
+  #WebApp
+  
+***/
+
+%macro load_hfs_params(cTable=SASControlTable
+  , outds=work.controlparameters);
+
+/* get Boemska data connector macros */
+%inc "SASEnvironment\SASCode\Programs\h54short.sas";
+
+/* load parameters */
+%hfsGetDataset(&ctable, &outds);
+
+%if %sysfunc(exist(&outds)) %then %do;
+  %local i vars var;
+  %let vars=%getvars(libds=&outds);
+  data _null_;
+    set &outds;
+    %do i=1 %to %sysfunc(countw(&vars));
+      %let var=%scan(&vars,&i);
+      call symputx("&var",&var,'g');
+    %end;  
+    putlog (_all_)(=);
+  run;
+%end;
+
+%mend;
