@@ -22,12 +22,12 @@
 ***/
 
 
-%macro getVarLabel(ds=sashelp.class /* two level ds name */
+%macro getVarLabel(libds=sashelp.class /* two level name */
       , var= /* variable name for which to return the label */
     );
   %local dsid vnum vlabel rc;
   /* Open dataset */
-  %let dsid = %sysfunc(open(&ds));
+  %let dsid = %sysfunc(open(&libds));
   %if &dsid > 0 %then %do;
     /* Get variable number */
     %let vnum = %sysfunc(varnum(&dsid, &var));
@@ -35,11 +35,11 @@
        /* Variable exists, so get label */
        %let vlabel = %sysfunc(varlabel(&dsid, &vnum));
     %else %do;
-       %put NOTE: Variable &var does not exist in &ds;
+       %put NOTE: Variable &var does not exist in &libds;
        %let vlabel = %str();
     %end;
   %end;
-  %else %put dataset &ds not opened! (rc=&dsid);
+  %else %put dataset &libds not opened! (rc=&dsid);
 
   /* Close dataset */
   %let rc = %sysfunc(close(&dsid));
