@@ -19,13 +19,13 @@
     nobj=metadata_getnobj("omsobj:SASLibrary?@Libref='&libref'",1,lib_uri);
     if nobj=1 then do;
        rc=metadata_getattr(lib_uri,"Name",LibName);
-       call symputx('LIB',libname,'L');
+       call symputx('libname',libname,'L');
     end;
     else if nobj>1 then putlog "ERROR: More than one library with libref='&libref'";
     else putlog "ERROR: Library '&libref' not found in metadata";
   run;
 
-  libname &libref meta library="&lib";
+  libname &libref meta library="&libname";
   %if %sysfunc(libref(&libref)) %then 
     %put ERROR: assign_metalib macro could not assign &libref;
 %end;
