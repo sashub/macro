@@ -10,7 +10,7 @@
 
 ***/
 
-%macro assign_lib(libref=/* libref that needs to be assigned */
+%macro assign_metalib(libref=/* libref that needs to be assigned */
   );
 %if %sysfunc(libref(&libref)) %then %do;
   data _null_;
@@ -27,7 +27,7 @@
 
   libname &libref meta library="&lib";
   %if %sysfunc(libref(&libref)) %then 
-    %put ERROR: assign_lib macro could not assign &libref;
+    %put ERROR: assign_metalib macro could not assign &libref;
 %end;
 %else %put NOTE: Library &libref is already assigned;
 %mend;
