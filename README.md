@@ -1,5 +1,5 @@
-# SAS Macro Library
+# Deprecated
 
-This is an open-source repository for SAS Macros.  All files conform to the published [standards](https://github.com/sashub/macro/wiki/Standards).
+This library is superceded by the [macrocore](https://github.com/Boemska/macrocore) library: https://github.com/Boemska/macrocore
 
 
